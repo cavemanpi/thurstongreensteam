@@ -16,11 +16,22 @@ get_header(); ?>
 
 	<div id="primary" class="site-content">
 		<div id="content" role="main">
+			
+			<?php
+				$pageTitle = get_the_title();
+  				if(($pageTitle == 'Macro-Invertebrates' || $pageTitle =='Water Quality') 
+					&& !is_user_logged_in()) {
+					print "You Must be logged in to see this page.";
+     				} 
+				else {
+					while ( have_posts() ) : the_post();
+						get_template_part( 'content', 'page' );
+						comments_template( '', true );
+					endwhile; // end of the loop.
+  				}
+			?>
 
-			<?php while ( have_posts() ) : the_post(); ?>
-				<?php get_template_part( 'content', 'page' ); ?>
-				<?php comments_template( '', true ); ?>
-			<?php endwhile; // end of the loop. ?>
+
 
 		</div><!-- #content -->
 	</div><!-- #primary -->
