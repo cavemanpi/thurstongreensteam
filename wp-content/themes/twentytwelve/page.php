@@ -18,9 +18,23 @@ get_header(); ?>
 		<div id="content" role="main">
 			
 			<?php
+				// Add restricted page names here
+				$restrictedPages = array(
+					'Macro-Invertebrates',
+					'Water Quality'
+				);
+
+
 				$pageTitle = get_the_title();
-  				if(($pageTitle == 'Macro-Invertebrates' || $pageTitle =='Water Quality') 
-					&& !is_user_logged_in()) {
+				$isRestricted = 0;
+
+				foreach ($restrictedPages as $restrictedPage) {
+					if ($pageTitle == $restrictedPage) {
+						$isRestricted = 1;
+					}
+				}
+				
+  				if($isRestricted) {
 					print "You Must be logged in to see this page.";
      				} 
 				else {
