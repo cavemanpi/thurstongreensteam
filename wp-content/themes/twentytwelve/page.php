@@ -21,7 +21,8 @@ get_header(); ?>
 				// Add restricted page names here
 				$restrictedPages = array(
 					'Macro-Invertebrates',
-					'Water Quality'
+					'Water Quality',
+					'Site Help'
 				);
 
 
@@ -34,7 +35,7 @@ get_header(); ?>
 					}
 				}
 				
-  				if($isRestricted) {
+  				if($isRestricted && !is_user_logged_in()) {
 					print "You Must be logged in to see this page.";
      				} 
 				else {
